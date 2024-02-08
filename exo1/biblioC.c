@@ -3,19 +3,20 @@
 #include <stdlib.h>
 #include <string.h>
 
-Livre * creer_livre(int num, char * titre, char auteur){
+Livre * creer_livre(int num, char * titre, char *auteur){
     Livre * livre= (Livre*) malloc(sizeof(Livre));
     livre->num=num;
     livre->titre=strdup(titre);
-    livre->auteur=strdup(auter);
+    livre->auteur=strdup(auteur);
     livre->suiv=NULL;
+    return livre;
 
 }
 
 void liberer_livre(Livre * l){
     if (l!=NULL){
         free(l->titre);
-        free(l->auter);
+        free(l->auteur);
         free(l);
         l=NULL;
     }
@@ -25,6 +26,7 @@ Biblio * creer_biblio(){
   
     Biblio * b= (Biblio*) malloc(sizeof(Biblio));
     b->L=NULL;
+    return b;
 }
 
 void liberer_biblio(Biblio * b){
@@ -34,18 +36,21 @@ void liberer_biblio(Biblio * b){
         while(livre){
             tmp=livre;
             liberer_livre(tmp);
-            livre=livre->suivant;
+            livre=livre->suiv;
             }
-    free(b);
-    b->L=NULL;
+        free(b);
+        b=NULL;
     }
 }
 
-void inserer_en_tete(Biblio* b, int num, char * titre, char * auter){
+void inserer_en_tete(Biblio* b, int num, char * titre, char * auteur){
     if(b!=NULL){
         Livre * livre= creer_livre(num,titre,auteur);
-        livre->suivant=b->L;
-        b->L->suivant=livre;
+        livre->suiv=b->L;
+        b->L->suiv=livre;
     }
 }
 
+int main(){
+    return 0;
+}
