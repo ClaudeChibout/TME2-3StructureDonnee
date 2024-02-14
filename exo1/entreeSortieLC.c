@@ -1,4 +1,4 @@
-#include "enrteeSortieLC.h"
+#include "entreeSortieLC.h"
 #include "biblioC.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,9 +11,9 @@ Biblio * charger_n_entrees(char * nomfic,int n){
     FILE * file= fopen(nomfic, "r");
     if(file==NULL){
         printf("erreur d'ouverture de mon_fichier\n");
-        return ;
+        return NULL;
     }
-    for(int i=0,i<n;){
+    for(int i=0;i<n;){
         fscanf(file,"%d %s %s\n", &i,&titre,&auteur);
         inserer_en_tete(b, i,titre,auteur);
 

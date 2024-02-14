@@ -50,7 +50,3 @@ void inserer_en_tete(Biblio* b, int num, char * titre, char * auteur){
         b->L->suiv=livre;
     }
 }
-
-int main(){
-    return 0;
-}
