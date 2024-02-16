@@ -21,6 +21,7 @@ LivreH * creer_livre(int num, char* titre, char* auteur){
     L->auteur = strdup(auteur);
     L->titre = strdup(titre);
     L->num = num;
+    L->suivant = NULL;
 
     return L;
 }
@@ -40,8 +41,12 @@ void liberer_livre(LivreH * l){
 
 BiblioH * creer_biblio(int m){
     BiblioH * b = (BiblioH *)malloc(sizeof(BiblioH));
-    b->m = m;
-    b->T = (LivreH **) malloc(sizeof(LivreH *)*m);
+    b->m = m; // taille du tableau
+    b->T = (LivreH **) malloc(sizeof(LivreH *)*m); // tableau de pointeur
+    // initialise les pointeurs a NULL
+    for (int i =0; i<m; i++){
+        b->T[i] = NULL;
+    }
     return b;
 }
 
@@ -60,5 +65,12 @@ int fonctionHachage(int cle, int m){
 }
 
 void inserer(BiblioH* b,int num,char* titre,char* auteur){
-    
+    // hash est l'indice dans notre tableau
+    int hash = fonctionHachage(fonctionClef(auteur), b->m);
+
+    LivreH * newLivre = creer_livre(num, titre, auteur); // on crée notre nouveau livre
+
+    // on l'ajoute en tete de la liste chainée contenue à l'indice 'hash' du tableau b->T
+    newLivre->suivant=b->T[hash];
+    b->T[hash] = newLivre;
 }
