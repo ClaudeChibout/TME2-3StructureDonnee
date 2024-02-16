@@ -14,6 +14,15 @@ BiblioH* charger_n_entrees(char* nomfic, int n){
     BiblioH * b = creer_biblio(n);
     char * buffer[256];
     for (int i = 0; i<n; i++){
-        
+        if (fgets(buffer, 256, f)){
+            int num;
+            char titre[256];
+            char auteur[256];
+            sscanf(buffer, "%d %s %s", &num, titre, auteur);
+            inserer(b, num, titre, auteur);
+        }else{
+            printf("Le fichier contenait seulement %d lignes qui ont été ajouté à la bibliothèque", i);
+        }
     }
+    return b;
 }
