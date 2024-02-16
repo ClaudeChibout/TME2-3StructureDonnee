@@ -47,7 +47,7 @@ void inserer_en_tete(Biblio* b, int num, char * titre, char * auteur){
     if(b!=NULL){
         Livre * livre= creer_livre(num,titre,auteur);
         livre->suiv=b->L;
-        b->L->suiv=livre;
+        b->L=livre;
     }
 }
 
@@ -55,8 +55,8 @@ void affichage_livre(Livre * l){
     if (l!=NULL){
         printf("num : %d, titre: %s, auteur: %s \n",l->num,l->titre,l->auteur);
            
-        }
     }
+    
 }
 
 void affichage_bibliotheque(Biblio * b){
