@@ -119,3 +119,18 @@ LivreH * recherche_par_titre_H(BiblioH * b, char * titre){
         }
     }
 }
+
+LivreH * recherche_livres_auteur(BiblioH * b, char * auteur){
+    BiblioH * bnew=creer_biblio(b->m);
+    for (int i =0; i<b->m; i++){
+        LivreH * tmp = b->T[i];
+        while(tmp){
+            if (strcmp(tmp->auteur, auteur)){
+                inserer(bnew, tmp->num, tmp->titre, tmp->auteur);
+            }
+            tmp=tmp->suivant;
+        }
+    }
+    return bnew;
+}
+
