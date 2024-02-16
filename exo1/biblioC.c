@@ -144,14 +144,17 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
         *bnew=creer_biblio();
         *b1=*bnew;
     }
-    Biblio ** bi2=b2->L
-    while(b2->L){
-
+    
+    Biblio * bi2=*b2
+    Livre * l2=bi2->L;
+    while(bi2->L){
+        inserer_en_tete(*b1, bi2->L->num, bi2->L->titre, bi2->L->auteur);
+        bi2->L=bi2->L->suiv;
     }
+    bi2->L=l2;
+    liberer_biblio(bi2);
 
-    }
+}
 
     
 
-    }
-}
