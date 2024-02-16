@@ -135,5 +135,23 @@ void supprimer_un_ouvrage(Biblio * b, int num, char * auteur, char * titre){
 }
 
 
+void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
+    if(*b2==NULL){
+        return;
+    }
+    Biblio ** bnew=(Biblio**)malloc(sizeof(Biblio*));
+    if (*b1==NULL){
+        *bnew=creer_biblio();
+        *b1=*bnew;
+    }
+    Biblio ** bi2=b2->L
+    while(b2->L){
 
+    }
 
+    }
+
+    
+
+    }
+}
