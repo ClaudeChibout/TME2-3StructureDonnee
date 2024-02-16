@@ -163,19 +163,26 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
     Livre * livre_double=NULL;
     Livre * livre_temp=NULL;
     Livre * livre_tete=b->L;
-    int cmp=0;
     while(livre_tete){
         livre_temp=livre_tete;
+        int cmp=0;
         while(livre_tete){
             if(strcmp(livre_tete->auteur,livre_temp->auteur) && strcmp(livre_tete->titre,livre_temp->titre) && livre_tete->num!=livre_temp->num){
                 Livre * tmp=creer_livre(livre_temp->num, livre_temp->titre, livre_temp->auteur);
                 tmp->suiv=livre_double;
                 livre_double=tmp;
+                cmp++;
             }
             livre_tete=livre_tete->suiv;
         }
-    livre_tete=livre_tete->suiv;
+        if(cmp>0){
+            Livre * tmp=creer_livre(livre_tete->num, livre_tete->titre, livre_tete->auteur);
+            tmp->suiv=livre_double;
+            livre_double=tmp;
+        }
+        livre_tete=livre_tete->suiv;
     }
+    return livre_double;
 
 }   
 
