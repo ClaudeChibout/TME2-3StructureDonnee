@@ -109,5 +109,80 @@ Biblio* recherche_livres_auteur(Biblio * b, char * auteur){
     return bnew;
 }
 
+void supprimer_un_ouvrage(Biblio * b, int num, char * auteur, char * titre){
+    if(b!=NULL){
+        Livre * l=b->L;
+        Livre * tmp=NULL;
+        if(l->num=num && strcmp(l->auteur,auteur) && strcmp(l->auteur,auteur)){
+            tmp=l;
+            l=l->suiv;
+            free(tmp);
+            b->L=l;
+            return;
+        }
+        Livre * precedent=NULL;
+        while(l!=NULL && l->num!=num && !strcmp(l->auteur,auteur) && !strcmp(l->auteur,auteur)){
+            precedent=l;
+            l=l->suiv;
 
+        }
+        if(l!=NULL){
+            precedent->suiv=l->suiv;
+            free(l);
+        }
+
+    }       
+}
+
+
+void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
+    if(*b2==NULL){
+        return;
+    }
+
+    Biblio ** bnew=(Biblio**)malloc(sizeof(Biblio*));
+    Livre * l2=(*b2)->L;
+    if (*b1==NULL){
+        *bnew=creer_biblio();
+        *b1=*bnew;
+    }else{
+        *bnew=*b1;
+    }
+
+    while(l2){
+        inserer_en_tete(*bnew, l2->num, l2->titre, l2->auteur);
+        l2=l2->suiv;
+    }
+
+    
+    liberer_biblio(*b2);
+    free(bnew);
+}
+
+ Livre * rechercher_ouvrage_identique(Biblio * b){
+    Livre * livre_double=NULL;
+    Livre * livre_temp=NULL;
+    Livre * livre_tete=b->L;
+    while(livre_tete){
+        livre_temp=livre_tete;
+        int cmp=0;
+        while(livre_tete){
+            if(strcmp(livre_tete->auteur,livre_temp->auteur) && strcmp(livre_tete->titre,livre_temp->titre) && livre_tete->num!=livre_temp->num){
+                Livre * tmp=creer_livre(livre_temp->num, livre_temp->titre, livre_temp->auteur);
+                tmp->suiv=livre_double;
+                livre_double=tmp;
+                cmp++;
+            }
+            livre_tete=livre_tete->suiv;
+        }
+        if(cmp>0){
+            Livre * tmp=creer_livre(livre_tete->num, livre_tete->titre, livre_tete->auteur);
+            tmp->suiv=livre_double;
+            livre_double=tmp;
+        }
+        livre_tete=livre_tete->suiv;
+    }
+    return livre_double;
+
+}   
 
