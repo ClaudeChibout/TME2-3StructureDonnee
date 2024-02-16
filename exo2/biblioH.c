@@ -1,4 +1,5 @@
 #include "biblioH.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -73,4 +74,22 @@ void inserer(BiblioH* b,int num,char* titre,char* auteur){
     // on l'ajoute en tete de la liste chainée contenue à l'indice 'hash' du tableau b->T
     newLivre->suivant=b->T[hash];
     b->T[hash] = newLivre;
+}
+
+void afficher_LivreH(LivreH * livre){
+    if (livre != NULL){
+        printf("%d %s %s\n", livre->num, livre->titre, livre->auteur);
+    }
+}
+
+void afficher_BiblioH(BiblioH * b){
+    if (b != NULL){
+        for (int i =0; i<b->m; i++){
+            LivreH * tmp= b->T[i];
+            while (tmp){
+                afficher_LivreH(tmp);
+                tmp=tmp->suivant;
+            }
+        }
+    }
 }
