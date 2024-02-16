@@ -139,21 +139,24 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
     if(*b2==NULL){
         return;
     }
+
     Biblio ** bnew=(Biblio**)malloc(sizeof(Biblio*));
-    Biblio * bi2=*b2
-    Livre * l2=bi2->L;
+    Livre * l2=*b2->L;
     if (*b1==NULL){
         *bnew=creer_biblio();
         *b1=*bnew;
     }else{
         *bnew=*b1;
     }
-    while(bi2->L){
-        inserer_en_tete(*bnew, bi2->L->num, bi2->L->titre, bi2->L->auteur);
-        bi2->L=bi2->L->suiv;
+
+    while(l2){
+        inserer_en_tete(*bnew, l2->num, l2->titre, l2->auteur);
+        l2=l2->suiv;
     }
-    bi2->L=l2;
-    liberer_biblio(bi2);
+
+    
+    liberer_biblio(*b2);
+    free(bnew);
 
 }
 
