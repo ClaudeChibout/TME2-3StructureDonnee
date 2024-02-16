@@ -120,7 +120,7 @@ LivreH * recherche_par_titre_H(BiblioH * b, char * titre){
     }
 }
 
-LivreH * recherche_livres_auteur(BiblioH * b, char * auteur){
+LivreH * recherche_livres_auteur_H(BiblioH * b, char * auteur){
     BiblioH * bnew=creer_biblio(b->m);
     for (int i =0; i<b->m; i++){
         LivreH * tmp = b->T[i];
@@ -133,4 +133,34 @@ LivreH * recherche_livres_auteur(BiblioH * b, char * auteur){
     }
     return bnew;
 }
+
+void * supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur){
+    if (b == NULL) return; // vérifie que la bibliotheque soit initialisée
+
+    // permet de trouver dans quelle case du tableau se trouve l'ouvrage 
+    int hash = fonctionHachage(fonctionClef(auteur), b->m);
+    LivreH * tmp = b->T[hash];
+    if (tmp == NULL) return;
+
+    // cas ou le livre est en debut de chaine
+    if (tmp->num = num && strcmp(tmp->auteur, auteur) && strcmp(tmp->titre, titre)){
+            b->T[hash] = b->T[hash]->suivant;
+            liberer_livre(tmp);
+            return;
+    }
+
+    // cas ou le livre n'est pas en premier dans la liste
+    LivreH * prec = tmp;
+    tmp=tmp->suivant;
+    while(tmp){
+        if (tmp->num = num && strcmp(tmp->auteur, auteur) && strcmp(tmp->titre, titre)){
+            prec->suivant = tmp->suivant;
+            liberer_livre(tmp);
+            return;
+        }
+        prec = tmp;
+        tmp=tmp->suivant;
+    }
+}
+
 
