@@ -114,7 +114,7 @@ void supprimer_un_ouvrage(Biblio * b, int num, char * auteur, char * titre){
         Livre * l=b->L;
         Livre * tmp=NULL;
         if(l->num=num && strcmp(l->auteur,auteur) && strcmp(l->auteur,auteur)){
-            tmp=l
+            tmp=l;
             l=l->suiv;
             free(tmp);
             b->L=l;
@@ -141,7 +141,7 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
     }
 
     Biblio ** bnew=(Biblio**)malloc(sizeof(Biblio*));
-    Livre * l2=*b2->L;
+    Livre * l2=(*b2)->L;
     if (*b1==NULL){
         *bnew=creer_biblio();
         *b1=*bnew;
