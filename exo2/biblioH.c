@@ -175,6 +175,11 @@ void fusion_BiblioH(BiblioH **b1, BiblioH **b2){
         *b1 = creer_biblio((*b2)->m);
     }
 
+    for( int i = 0; i < (*b2)->m; i++){
+        LivreH * tmp = (*b2)->T[i];
+        
+    }
+
 
 }
 
