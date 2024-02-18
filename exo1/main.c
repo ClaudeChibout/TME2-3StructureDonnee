@@ -120,7 +120,10 @@ int main(int argc, char** argv){
         case 8:
             choix_biblio(&select_biblio, buffer);
             Livre * livre=rechercher_ouvrage_identique(select_biblio==1?b:b2);
-            affichage_livre(livre);
+            while (livre){
+                affichage_livre(livre);
+                livre = livre->suiv;
+            }
             break;
 
         default:
