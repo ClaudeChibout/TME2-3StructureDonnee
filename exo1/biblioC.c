@@ -56,6 +56,8 @@ void affichage_livre(Livre * l){
     if (l!=NULL){
         printf("num : %d, titre: %s, auteur: %s \n",l->num,l->titre,l->auteur);
            
+    }else{
+        printf("Livre non initialisé\n");
     }
     
 }
@@ -75,12 +77,13 @@ Livre* recherche_ouvrage_num(Biblio * b, int num){
     Livre * l=b->L;
     if(b!=NULL){
         while(l){
-            if(l->num=num){
+            if(l->num==num){
                 return l;
             }
             l=l->suiv;
         }
     }
+    return NULL;
 }
 
 
@@ -88,7 +91,7 @@ Livre* recherche_ouvrage_titre(Biblio * b, char * titre){
     Livre * l=b->L;
     if(b!=NULL){
         while(l){
-            if(strcmp(l->titre,titre)){
+            if(strcmp(l->titre,titre)==0){
                 return l;
             }
             l=l->suiv;
@@ -101,7 +104,7 @@ Biblio* recherche_livres_auteur(Biblio * b, char * auteur){
     Biblio * bnew=creer_biblio();
     if(b!=NULL){
         while(l){
-            if (strcmp(l->auteur,auteur)){
+            if (strcmp(l->auteur,auteur)==0){
                 inserer_en_tete(bnew, l->num, l->titre, l->auteur);
             }
             l=l->suiv;
@@ -114,7 +117,7 @@ void supprimer_un_ouvrage(Biblio * b, int num, char * auteur, char * titre){
     if(b!=NULL){
         Livre * l=b->L;
         Livre * tmp=NULL;
-        if(l->num=num && strcmp(l->auteur,auteur) && strcmp(l->auteur,auteur)){
+        if(l->num=num && strcmp(l->auteur,auteur)==0 && strcmp(l->auteur,auteur)==0){
             tmp=l;
             l=l->suiv;
             free(tmp);
@@ -122,7 +125,7 @@ void supprimer_un_ouvrage(Biblio * b, int num, char * auteur, char * titre){
             return;
         }
         Livre * precedent=NULL;
-        while(l!=NULL && l->num!=num && !strcmp(l->auteur,auteur) && !strcmp(l->auteur,auteur)){
+        while(l!=NULL && l->num!=num && strcmp(l->auteur,auteur)!=0 && strcmp(l->auteur,auteur)!=0){
             precedent=l;
             l=l->suiv;
 
@@ -161,6 +164,7 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
 }
 
  Livre * rechercher_ouvrage_identique(Biblio * b){
+
     Livre * livre_double=NULL;
     Livre * livre_temp=NULL;
     Livre * livre_tete=b->L;
