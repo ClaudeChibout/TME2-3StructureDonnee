@@ -117,7 +117,7 @@ void supprimer_un_ouvrage(Biblio * b, int num, char * auteur, char * titre){
     if(b!=NULL){
         Livre * l=b->L;
         Livre * tmp=NULL;
-        if(l->num=num && strcmp(l->auteur,auteur)==0 && strcmp(l->auteur,auteur)==0){
+        if(l->num==num && strcmp(l->auteur,auteur)==0 && strcmp(l->auteur,auteur)==0){
             tmp=l;
             l=l->suiv;
             free(tmp);
