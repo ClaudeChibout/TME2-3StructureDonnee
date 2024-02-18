@@ -25,7 +25,7 @@ void menu() {
 
 int main(int argc, char** argv){
     if (argc != 3) {
-        printf("");
+        printf("Veuillez entrer le nom du fichier et le nombre de ligne a lire\n");
         return 1;
     }
 
