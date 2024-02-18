@@ -165,7 +165,7 @@ void * supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur){
 
 void fusion_BiblioH(BiblioH **b1, BiblioH **b2){
     if (b1 == NULL || b2 == NULL){
-        printf("Erreur fusion_BiblioH: Il faut donner en argument deux adresses de (BiblioH *) ");
+        printf("Erreur fusion_BiblioH: Il faut donner en argument deux adresses de (BiblioH *)\n");
     }
     if (*b2 == NULL){
         return;
@@ -177,10 +177,37 @@ void fusion_BiblioH(BiblioH **b1, BiblioH **b2){
 
     for( int i = 0; i < (*b2)->m; i++){
         LivreH * tmp = (*b2)->T[i];
-        
+        while (tmp)
+        {
+            inserer(*b1, tmp->num, tmp->titre, tmp->auteur);
+        }
+    }
+    liberer_biblio(*b2);
+    *b2 = NULL;
+}
+
+LivreH * recherche_ouvrage_plusieurs_exemplaires(BiblioH * b){
+    LivreH * res = NULL;
+
+    for (int i =0; i<b->m; i++){
+        LivreH * tmp = b->T[i];
+        while (tmp){
+            LivreH * tmp2 = b->T[i];
+            while (tmp2){
+                int cond = 0; // booleen pour ajouter le premier livre si plusieurs exemplaire ont été trouvé
+                tmp2 = tmp2->suivant;
+                if (strcmp(tmp->auteur,tmp2->auteur)==0 && strcmp(tmp->titre,tmp2->titre)==0){
+                    LivreH* new = creer_livre(tmp2->num, tmp->titre,tmp2->auteur);
+                    new->suivant = res;
+                    res = new;
+                }
+            }
+
+            tmp = tmp->suivant;
+        }
     }
 
-
+    return res;
 }
 
 
