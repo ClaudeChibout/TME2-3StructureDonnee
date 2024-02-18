@@ -14,8 +14,8 @@ main:  main.o biblioC.o entreeSortieLC.o
 
 
 clean:
-	 rm -rf *.o
-
+	rm -rf *.o
+	rm -rf *.gch
 
 
 

@@ -4,6 +4,7 @@
 #include <string.h>
 
 Livre * creer_livre(int num, char * titre, char *auteur){
+
     Livre * livre= (Livre*) malloc(sizeof(Livre));
     livre->num=num;
     livre->titre=strdup(titre);
