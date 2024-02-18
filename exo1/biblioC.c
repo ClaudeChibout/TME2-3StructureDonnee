@@ -191,7 +191,7 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
         
     }
     if(livre_double==NULL){
-        printf("Il n'y a pas de doublons dans la bibliothèque.")
+        printf("Il n'y a pas de doublons dans la bibliothèque.");
     }
     return livre_double;
 
