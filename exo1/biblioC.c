@@ -190,6 +190,9 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
         livre_tete1=livre_tete1->suiv;
         
     }
+    if(livre_double==NULL){
+        printf("Il n'y a pas de doublons dans la bibliothèque.")
+    }
     return livre_double;
 
 }   
