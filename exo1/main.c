@@ -117,6 +117,11 @@ int main(int argc, char** argv){
             affichage_bibliotheque(b);
             printf("les bibliothèque ont été fusionner ");
             break;
+        case 8:
+            choix_biblio(&select_biblio, buffer);
+            Livre * livre=rechercher_ouvrage_identique(select_biblio==1?b:b2);
+            affichage_livre(livre);
+            break;
 
         default:
             printf("Option non valide.\n");
