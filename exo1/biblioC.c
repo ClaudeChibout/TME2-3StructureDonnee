@@ -174,14 +174,14 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
         // parcours livre double pour vérifier que le livre courant ne soit pas dedans 
         Livre * prc_double=livre_double;
         livre_temp=b->L;
-        while(prc_double){
+/*        while(prc_double){
             if(strcmp(livre_tete1->auteur,prc_double->auteur)==0 && strcmp(livre_tete1->titre,prc_double->titre)==0){
                 livre_temp=NULL;
                 break;
             }
             prc_double=prc_double->suiv;
 
-        }
+        }*/
         int cmp=0;
         while(livre_temp){
             if(strcmp(livre_tete1->auteur,livre_temp->auteur)==0 && strcmp(livre_tete1->titre,livre_temp->titre)==0 && livre_temp->num != livre_tete1->num){
@@ -203,6 +203,23 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
     }
     if(livre_double==NULL){
         printf("Il n'y a pas de doublons dans la bibliothèque.");
+    }else{
+        Livre * ld= livre_double;
+        while(ld){
+            Livre * ld2= ld->suiv;
+            Livre * prec = ld;
+            while(ld2){
+                if(strcmp(ld->auteur,ld2->auteur)==0 && strcmp(ld->titre,ld2->titre)==0 &&ld->num==ld2->num){
+                    prec->suiv = ld2->suiv;
+                    liberer_livre(ld2);
+                    ld2 = prec->suiv;
+                }else{
+                    prec = ld2;
+                    ld2 = ld2->suiv;
+                }
+            }
+            ld = ld->suiv;
+        }
     }
     return livre_double;
 
