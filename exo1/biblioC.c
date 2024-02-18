@@ -173,7 +173,7 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
         livre_temp=livre_tete1;
         int cmp=0;
         while(livre_tete){
-            if(strcmp(livre_tete->auteur,livre_temp->auteur)==0 && strcmp(livre_tete->titre,livre_temp->titre)==0){
+            if(strcmp(livre_tete->auteur,livre_temp->auteur)==0 && strcmp(livre_tete->titre,livre_temp->titre)==0 && livre_temp->num != livre_tete->num){
                 Livre * tmp=creer_livre(livre_tete->num, livre_tete->titre, livre_tete->auteur);
                 tmp->suiv=livre_double;
                 livre_double=tmp;
