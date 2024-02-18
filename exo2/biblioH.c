@@ -163,4 +163,19 @@ void * supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur){
     }
 }
 
+void fusion_BiblioH(BiblioH **b1, BiblioH **b2){
+    if (b1 == NULL || b2 == NULL){
+        printf("Erreur fusion_BiblioH: Il faut donner en argument deux adresses de (BiblioH *) ");
+    }
+    if (*b2 == NULL){
+        return;
+    }
+
+    if (*b1 == NULL ){
+        *b1 = creer_biblio((*b2)->m);
+    }
+
+
+}
+
 
