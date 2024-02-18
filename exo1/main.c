@@ -96,13 +96,13 @@ int main(int argc, char** argv){
             fgets(buffer, 256, stdin);
             if (sscanf(buffer, "%d %s %s", &num, titre, auteur) == 3) {
                 supprimer_un_ouvrage(b,num,auteur, titre);
+                printf("l'ouvrage num : %d titre : %s d'auteur : %s a été supprimer\n", num, titre, auteur);
             }
             break;
         default:
             printf("Option non valide.\n");
             break;
     
-        }
         }
 } while ( rep !=0) ;
 liberer_biblio(b);
