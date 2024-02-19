@@ -54,6 +54,7 @@ BiblioH * creer_biblio(int m){
 void liberer_biblio(BiblioH * b){
     if (b!=NULL){
         for(int i=0; i<b->m; i++){
+            LivreH* tmp = b->T[i];
             liberer_livre(b->T[i]);
         }
         free(b);
@@ -198,13 +199,13 @@ LivreH * recherche_ouvrage_plusieurs_exemplaires(BiblioH * b){
             LivreH * tmp2 = b->T[i];
             int cond = 0;// booleen pour ajouter le premier livre si plusieurs exemplaire ont été trouvé
             while (tmp2){
-                tmp2 = tmp2->suivant;
                 if (strcmp(tmp->auteur,tmp2->auteur)==0 && strcmp(tmp->titre,tmp2->titre)==0 && tmp->num != tmp2->num){
                     LivreH* new = creer_livre(tmp2->num, tmp2->titre,tmp2->auteur);
                     new->suivant = res;
                     res = new;
                     cond+=1;
                 }
+                tmp2 = tmp2->suivant;
             }
 
             if (cond > 0){
@@ -218,7 +219,26 @@ LivreH * recherche_ouvrage_plusieurs_exemplaires(BiblioH * b){
             tmp = tmp->suivant;
         }
     }
-
+    if(res==NULL){
+        printf("Il n'y a pas de doublons dans la bibliothèque.\n");
+    }else{
+        LivreH * ld= res;
+        while(ld){
+            LivreH * ld2= ld->suivant;
+            LivreH * prec = ld;
+            while(ld2){
+                if(strcmp(ld->auteur,ld2->auteur)==0 && strcmp(ld->titre,ld2->titre)==0 &&ld->num==ld2->num){
+                    prec->suivant = ld2->suivant;
+                    liberer_livre(ld2);
+                    ld2 = prec->suivant;
+                }else{
+                    prec = ld2;
+                    ld2 = ld2->suivant;
+                }
+            }
+            ld = ld->suivant;
+        }
+    }
     return res;
 }
 
