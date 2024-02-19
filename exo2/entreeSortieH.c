@@ -15,7 +15,7 @@ BiblioH* charger_n_entrees_BiblioH(char* nomfic, int n){
 
 
     BiblioH * b = creer_biblio(n); // crée la bibliothèque
-    char * buffer[256];
+    char buffer[256];
 
     // pour le nombre de ligne demandé
     for (int i = 0; i<n; i++){

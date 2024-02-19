@@ -1,6 +1,7 @@
 #include "biblioH.h"
 #include "entreeSortieH.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 
 
@@ -24,13 +25,13 @@ int main(){
         tmp=tmp->suivant;
     }
 
-    liberer_biblio(b);
-
     while (doublons){
         tmp = doublons->suivant;
-        free(doublons);
+        liberer_livre(doublons);
         doublons = tmp;
     }
+    liberer_biblio(b);
+
 
     
 

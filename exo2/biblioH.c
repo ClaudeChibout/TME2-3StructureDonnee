@@ -59,9 +59,10 @@ void liberer_biblio(BiblioH * b){
 
                 tmp=b->T[i]->suivant;
                 liberer_livre(b->T[i]);
-                b->T[i]->
+                b->T[i] = tmp;
             }
         }
+        free(b->T);
         free(b);
     }
 }
@@ -101,7 +102,6 @@ void afficher_BiblioH(BiblioH * b){
 }
 
 LivreH * recherche_par_numero_H(BiblioH * b, int num){
-    LivreH * res = NULL;
     for (int i =0; i<b->m; i++){
         LivreH * tmp = b->T[i];
         while(tmp){
@@ -111,10 +111,10 @@ LivreH * recherche_par_numero_H(BiblioH * b, int num){
             tmp=tmp->suivant;
         }
     }
+    return NULL;
 }
 
 LivreH * recherche_par_titre_H(BiblioH * b, char * titre){
-    LivreH * res = NULL;
     for (int i =0; i<b->m; i++){
         LivreH * tmp = b->T[i];
         while(tmp){
@@ -124,9 +124,10 @@ LivreH * recherche_par_titre_H(BiblioH * b, char * titre){
             tmp=tmp->suivant;
         }
     }
+    return NULL;
 }
 
-LivreH * recherche_livres_auteur_H(BiblioH * b, char * auteur){
+BiblioH * recherche_livres_auteur_H(BiblioH * b, char * auteur){
     BiblioH * bnew=creer_biblio(b->m);
     for (int i =0; i<b->m; i++){
         LivreH * tmp = b->T[i];
@@ -140,7 +141,7 @@ LivreH * recherche_livres_auteur_H(BiblioH * b, char * auteur){
     return bnew;
 }
 
-void * supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur){
+void supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur){
     if (b == NULL) return; // vérifie que la bibliotheque soit initialisée
 
     // permet de trouver dans quelle case du tableau se trouve l'ouvrage 
@@ -149,7 +150,7 @@ void * supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur){
     if (tmp == NULL) return;
 
     // cas ou le livre est en debut de chaine
-    if (tmp->num = num && strcmp(tmp->auteur, auteur) && strcmp(tmp->titre, titre)){
+    if (tmp->num == num && strcmp(tmp->auteur, auteur) && strcmp(tmp->titre, titre)){
             b->T[hash] = b->T[hash]->suivant;
             liberer_livre(tmp);
             return;
@@ -159,7 +160,7 @@ void * supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur){
     LivreH * prec = tmp;
     tmp=tmp->suivant;
     while(tmp){
-        if (tmp->num = num && strcmp(tmp->auteur, auteur) && strcmp(tmp->titre, titre)){
+        if (tmp->num == num && strcmp(tmp->auteur, auteur) && strcmp(tmp->titre, titre)){
             prec->suivant = tmp->suivant;
             liberer_livre(tmp);
             return;
