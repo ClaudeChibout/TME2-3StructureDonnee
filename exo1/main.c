@@ -20,6 +20,7 @@ void menu() {
     printf("6- Supprimer un ouvrage\n");
     printf("7- Fusion de deux bibliothèque\n");
     printf("8- Recherche d'un ouvrage identique\n");
+    printf("9- Recherche d'un ouvrage avec le nom de l'auteur\n");
 
 }
 
@@ -127,7 +128,14 @@ int main(int argc, char** argv){
                 livre = livre->suiv;
             }
             break;
-
+        case 9:
+            choix_biblio(&select_biblio, buffer);
+            printf("Veuillez écrire le nom de l'auteur : ");
+            fgets(buffer, 256, stdin);
+            if (sscanf(buffer, "%s\n", auteur) == 1) {
+                affichage_bibliotheque(recherche_livres_auteur(select_biblio==1?b:b2,auteur));
+            }
+            break;
         default:
             printf("Option non valide.\n");
             break;
