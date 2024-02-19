@@ -15,11 +15,11 @@ typedef struct table {
     LivreH ** T ; /*table de hachage avec resolution des collisions par chainage */
 } BiblioH ;
 
-LivreH * creer_livre(int num, char* titre, char* auteur);
-void liberer_livre(LivreH * l);
+LivreH * creer_livreH(int num, char* titre, char* auteur);
+void liberer_livreH(LivreH * l);
 
-BiblioH * creer_biblio(int m);
-void liberer_biblio(BiblioH * b);
+BiblioH * creer_biblioH(int m);
+void liberer_biblioH(BiblioH * b);
 
 void afficher_BiblioH(BiblioH * b);
 void afficher_LivreH(LivreH * livre);
