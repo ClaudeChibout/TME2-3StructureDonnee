@@ -69,11 +69,10 @@ void affichage_bibliotheque(Biblio * b){
             printf("La Bibliothèque est vide.\n");
             return;
         }
-        while(b->L){
-            affichage_livre(b->L);
-            b->L=b->L->suiv;
+        while(livre){
+            affichage_livre(livre);
+            livre=livre->suiv;
         }
-        b->L=livre;
     }else{
         printf("La Bibliothèque n'existe pas.\n");
         return;
@@ -166,6 +165,7 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
 
     
     liberer_biblio(*b2);
+    *b2 = NULL;
     //free(bnew);
 }
 
