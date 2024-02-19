@@ -54,6 +54,7 @@ BiblioH * creer_biblio(int m){
 void liberer_biblio(BiblioH * b){
     if (b!=NULL){
         for(int i=0; i<b->m; i++){
+            LivreH* tmp = b->T[i];
             liberer_livre(b->T[i]);
         }
         free(b);
@@ -163,4 +164,85 @@ void * supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur){
     }
 }
 
+<<<<<<< HEAD
+=======
+void fusion_BiblioH(BiblioH **b1, BiblioH **b2){
+    if (b1 == NULL || b2 == NULL){
+        printf("Erreur fusion_BiblioH: Il faut donner en argument deux adresses de (BiblioH *)\n");
+    }
+    if (*b2 == NULL){
+        return;
+    }
+
+    if (*b1 == NULL ){
+        *b1 = creer_biblio((*b2)->m);
+    }
+
+    for( int i = 0; i < (*b2)->m; i++){
+        LivreH * tmp = (*b2)->T[i];
+        while (tmp)
+        {
+            inserer(*b1, tmp->num, tmp->titre, tmp->auteur);
+        }
+    }
+    liberer_biblio(*b2);
+    *b2 = NULL;
+}
+
+LivreH * recherche_ouvrage_plusieurs_exemplaires(BiblioH * b){
+    if (b == NULL) return NULL;
+    LivreH * res = NULL; // notre liste chainé contenant les doublons
+    // parcours le tableau b->T pour acceder aux listes chainées
+    for (int i =0; i<b->m; i++){
+        LivreH * tmp = b->T[i]; // liste chainé contenue dans la case d'indice i du tableau b->T
+        // on parcourt la liste chainée 
+        while (tmp){
+            // idem pour un deuxieme parcourt
+            LivreH * tmp2 = b->T[i];
+            int cond = 0;// booleen pour ajouter le premier livre si plusieurs exemplaire ont été trouvé
+            while (tmp2){
+                if (strcmp(tmp->auteur,tmp2->auteur)==0 && strcmp(tmp->titre,tmp2->titre)==0 && tmp->num != tmp2->num){
+                    LivreH* new = creer_livre(tmp2->num, tmp2->titre,tmp2->auteur);
+                    new->suivant = res;
+                    res = new;
+                    cond+=1;
+                }
+                tmp2 = tmp2->suivant;
+            }
+
+            if (cond > 0){
+                LivreH* new = creer_livre(tmp->num, tmp->titre,tmp->auteur);
+                new->suivant = res;
+                res = new;
+            }
+
+
+
+            tmp = tmp->suivant;
+        }
+    }
+    if(res==NULL){
+        printf("Il n'y a pas de doublons dans la bibliothèque.\n");
+    }else{
+        LivreH * ld= res;
+        while(ld){
+            LivreH * ld2= ld->suivant;
+            LivreH * prec = ld;
+            while(ld2){
+                if(strcmp(ld->auteur,ld2->auteur)==0 && strcmp(ld->titre,ld2->titre)==0 &&ld->num==ld2->num){
+                    prec->suivant = ld2->suivant;
+                    liberer_livre(ld2);
+                    ld2 = prec->suivant;
+                }else{
+                    prec = ld2;
+                    ld2 = ld2->suivant;
+                }
+            }
+            ld = ld->suivant;
+        }
+    }
+    return res;
+}
+
+>>>>>>> 22407d30271ca6f7df4536d9dfc66e8371c04ea3
 
