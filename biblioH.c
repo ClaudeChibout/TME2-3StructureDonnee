@@ -17,7 +17,7 @@ int fonctionClef(char * auteur){
     return hash;
 }
 
-LivreH * creer_livre(int num, char* titre, char* auteur){
+LivreH * creer_livreH(int num, char* titre, char* auteur){
     LivreH * L = (LivreH *)malloc(sizeof(LivreH));
     L->auteur = strdup(auteur);
     L->titre = strdup(titre);
@@ -27,7 +27,7 @@ LivreH * creer_livre(int num, char* titre, char* auteur){
     return L;
 }
 
-void liberer_livre(LivreH * l){
+void liberer_livreH(LivreH * l){
     if (l != NULL){
         if (l->titre != NULL){
             free(l->titre);
@@ -40,7 +40,7 @@ void liberer_livre(LivreH * l){
     
 }
 
-BiblioH * creer_biblio(int m){
+BiblioH * creer_biblioH(int m){
     BiblioH * b = (BiblioH *)malloc(sizeof(BiblioH));
     b->m = m; // taille du tableau
     b->T = (LivreH **) malloc(sizeof(LivreH *)*m); // tableau de pointeur
@@ -51,14 +51,14 @@ BiblioH * creer_biblio(int m){
     return b;
 }
 
-void liberer_biblio(BiblioH * b){
+void liberer_biblioH(BiblioH * b){
     if (b!=NULL){
         for(int i=0; i<b->m; i++){
             LivreH* tmp = NULL;
             while (b->T[i]){
 
                 tmp=b->T[i]->suivant;
-                liberer_livre(b->T[i]);
+                liberer_livreH(b->T[i]);
                 b->T[i] = tmp;
             }
         }
@@ -76,7 +76,7 @@ void inserer(BiblioH* b,int num,char* titre,char* auteur){
     // hash est l'indice dans notre tableau
     int hash = fonctionHachage(fonctionClef(auteur), b->m);
 
-    LivreH * newLivre = creer_livre(num, titre, auteur); // on crée notre nouveau livre
+    LivreH * newLivre = creer_livreH(num, titre, auteur); // on crée notre nouveau livre
 
     // on l'ajoute en tete de la liste chainée contenue à l'indice 'hash' du tableau b->T
     newLivre->suivant=b->T[hash];
@@ -128,7 +128,7 @@ LivreH * recherche_par_titre_H(BiblioH * b, char * titre){
 }
 
 BiblioH * recherche_livres_auteur_H(BiblioH * b, char * auteur){
-    BiblioH * bnew=creer_biblio(b->m);
+    BiblioH * bnew=creer_biblioH(b->m);
     for (int i =0; i<b->m; i++){
         LivreH * tmp = b->T[i];
         while(tmp){
@@ -152,7 +152,7 @@ void supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur){
     // cas ou le livre est en debut de chaine
     if (tmp->num == num && strcmp(tmp->auteur, auteur) && strcmp(tmp->titre, titre)){
             b->T[hash] = b->T[hash]->suivant;
-            liberer_livre(tmp);
+            liberer_livreH(tmp);
             return;
     }
 
@@ -162,7 +162,7 @@ void supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur){
     while(tmp){
         if (tmp->num == num && strcmp(tmp->auteur, auteur) && strcmp(tmp->titre, titre)){
             prec->suivant = tmp->suivant;
-            liberer_livre(tmp);
+            liberer_livreH(tmp);
             return;
         }
         prec = tmp;
@@ -179,7 +179,7 @@ void fusion_BiblioH(BiblioH **b1, BiblioH **b2){
     }
 
     if (*b1 == NULL ){
-        *b1 = creer_biblio((*b2)->m);
+        *b1 = creer_biblioH((*b2)->m);
     }
 
     for( int i = 0; i < (*b2)->m; i++){
@@ -189,7 +189,7 @@ void fusion_BiblioH(BiblioH **b1, BiblioH **b2){
             inserer(*b1, tmp->num, tmp->titre, tmp->auteur);
         }
     }
-    liberer_biblio(*b2);
+    liberer_biblioH(*b2);
     *b2 = NULL;
 }
 
@@ -206,7 +206,7 @@ LivreH * recherche_ouvrage_plusieurs_exemplaires(BiblioH * b){
             int cond = 0;// booleen pour ajouter le premier livre si plusieurs exemplaire ont été trouvé
             while (tmp2){
                 if (strcmp(tmp->auteur,tmp2->auteur)==0 && strcmp(tmp->titre,tmp2->titre)==0 && tmp->num != tmp2->num){
-                    LivreH* new = creer_livre(tmp2->num, tmp2->titre,tmp2->auteur);
+                    LivreH* new = creer_livreH(tmp2->num, tmp2->titre,tmp2->auteur);
                     new->suivant = res;
                     res = new;
                     cond+=1;
@@ -215,7 +215,7 @@ LivreH * recherche_ouvrage_plusieurs_exemplaires(BiblioH * b){
             }
 
             if (cond > 0){
-                LivreH* new = creer_livre(tmp->num, tmp->titre,tmp->auteur);
+                LivreH* new = creer_livreH(tmp->num, tmp->titre,tmp->auteur);
                 new->suivant = res;
                 res = new;
             }
@@ -235,7 +235,7 @@ LivreH * recherche_ouvrage_plusieurs_exemplaires(BiblioH * b){
             while(ld2){
                 if(strcmp(ld->auteur,ld2->auteur)==0 && strcmp(ld->titre,ld2->titre)==0 &&ld->num==ld2->num){
                     prec->suivant = ld2->suivant;
-                    liberer_livre(ld2);
+                    liberer_livreH(ld2);
                     ld2 = prec->suivant;
                 }else{
                     prec = ld2;
