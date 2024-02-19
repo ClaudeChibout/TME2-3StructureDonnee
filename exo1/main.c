@@ -93,7 +93,7 @@ int main(int argc, char** argv){
             break;
         case 5:
             choix_biblio(&select_biblio, buffer);
-            printf("Veuillez écrire le numéro et le titre de l'ouvrage : ");
+            printf("Veuillez écrire le titre de l'ouvrage : ");
             //fflush(stdin);
             fgets(buffer, 256, stdin);
             if (sscanf(buffer, "%s", titre) == 1) {

@@ -63,14 +63,22 @@ void affichage_livre(Livre * l){
 }
 
 void affichage_bibliotheque(Biblio * b){
-    Livre * livre = b->L;
     if(b!=NULL){
+        Livre * livre = b->L;
+        if(livre==NULL){
+            printf("La Bibliothèque est vide.\n");
+            return;
+        }
         while(b->L){
             affichage_livre(b->L);
             b->L=b->L->suiv;
         }
         b->L=livre;
+    }else{
+        printf("La Bibliothèque n'existe pas.\n");
+        return;
     }
+    
 }
 
 Livre* recherche_ouvrage_num(Biblio * b, int num){
@@ -144,23 +152,21 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
         return;
     }
 
-    Biblio ** bnew=(Biblio**)malloc(sizeof(Biblio*));
+    //Biblio ** bnew=(Biblio**)malloc(sizeof(Biblio*));
     Livre * l2=(*b2)->L;
     if (*b1==NULL){
-        *bnew=creer_biblio();
-        *b1=*bnew;
-    }else{
-        *bnew=*b1;
+        *b1=creer_biblio();
+        //*b1=*bnew;
     }
 
     while(l2){
-        inserer_en_tete(*bnew, l2->num, l2->titre, l2->auteur);
+        inserer_en_tete(*b1, l2->num, l2->titre, l2->auteur);
         l2=l2->suiv;
     }
 
     
     liberer_biblio(*b2);
-    free(bnew);
+    //free(bnew);
 }
 
  Livre * rechercher_ouvrage_identique(Biblio * b){
