@@ -24,15 +24,15 @@ void menu() {
 }
 
 int main(int argc, char** argv){
-    /*if (argc != 3) {
+    if (argc != 3) {
         printf("Veuillez entrer le nom du fichier et le nombre de ligne a lire\n");
         return 1;
-    }*/
+    }
 
-    //char * nom_fichier = argv[1];
-    char * nom_fichier = "GdeBiblio.txt";
-    //int nombre_ligne = atoi(argv[2]);
-    int nombre_ligne = 10;
+    char * nom_fichier = argv[1];
+
+    int nombre_ligne = atoi(argv[2]);
+
 
     Biblio *b = charger_n_entrees(nom_fichier,nombre_ligne);
     //affichage_bibliotheque(b);
@@ -56,7 +56,7 @@ int main(int argc, char** argv){
             affichage_bibliotheque(select_biblio==1?b:b2);
             break ;
         case 2:
-            //fflush(stdin);
+    
             choix_biblio(&select_biblio, buffer);
             printf("Veuillez écrire le numéro, le titre et l'auteur de l'ouvrage : ");
             fgets(buffer, 256, stdin);
@@ -83,7 +83,7 @@ int main(int argc, char** argv){
         case 4:
             choix_biblio(&select_biblio, buffer);
             printf("Veuillez écrire le numéro : ");
-            //fflush(stdin);
+    
             fgets(buffer, 256, stdin);
             if (sscanf(buffer, "%d\n", &num) == 1) {
                 
@@ -96,7 +96,7 @@ int main(int argc, char** argv){
         case 5:
             choix_biblio(&select_biblio, buffer);
             printf("Veuillez écrire le titre de l'ouvrage : ");
-            //fflush(stdin);
+           
             fgets(buffer, 256, stdin);
             if (sscanf(buffer, "%s", titre) == 1) {
                 affichage_livre(recherche_ouvrage_titre(select_biblio==1?b:b2, titre));
