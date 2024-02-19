@@ -164,8 +164,6 @@ void * supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur){
     }
 }
 
-<<<<<<< HEAD
-=======
 void fusion_BiblioH(BiblioH **b1, BiblioH **b2){
     if (b1 == NULL || b2 == NULL){
         printf("Erreur fusion_BiblioH: Il faut donner en argument deux adresses de (BiblioH *)\n");
@@ -244,5 +242,4 @@ LivreH * recherche_ouvrage_plusieurs_exemplaires(BiblioH * b){
     return res;
 }
 
->>>>>>> 22407d30271ca6f7df4536d9dfc66e8371c04ea3
 

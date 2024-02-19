@@ -24,13 +24,15 @@ void menu() {
 }
 
 int main(int argc, char** argv){
-    if (argc != 3) {
+    /*if (argc != 3) {
         printf("Veuillez entrer le nom du fichier et le nombre de ligne a lire\n");
         return 1;
-    }
+    }*/
 
-    char * nom_fichier = argv[1];
-    int nombre_ligne = atoi(argv[2]);
+    //char * nom_fichier = argv[1];
+    char * nom_fichier = "GdeBiblio.txt";
+    //int nombre_ligne = atoi(argv[2]);
+    int nombre_ligne = 10;
 
     Biblio *b = charger_n_entrees(nom_fichier,nombre_ligne);
     //affichage_bibliotheque(b);
