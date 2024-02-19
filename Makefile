@@ -16,10 +16,10 @@ entreeSortieH.o: entreeSortieH.c
 	gcc -Wall -c -o entreeSortieH.o entreeSortieH.c
 
 mainH: biblioH.o entreeSortieH.o ex2.c 
-	gcc -Wall -o main ex2.c entreeSortieH.o biblioH.o
+	gcc -Wall -o mainH ex2.c entreeSortieH.o biblioH.o
 
 mainlc:  main.o biblioC.o entreeSortieLC.o
-	gcc -o main -Wall main.o biblioC.o entreeSortieLC.o
+	gcc -o mainlc -Wall main.o biblioC.o entreeSortieLC.o
 
 clean:
 	rm -rf *.o
