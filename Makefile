@@ -1,4 +1,4 @@
-all : main
+all : mainH mainlc
 
 biblioC.o: biblioC.c biblioC.h
 	gcc -c biblioC.c biblioC.h
@@ -9,9 +9,17 @@ entreeSortieLC.o: entreeSortieLC.c entreeSortieLC.h
 main.o: main.c 
 	gcc -c  main.c
 
-main:  main.o biblioC.o entreeSortieLC.o
-	gcc -o main -Wall main.o biblioC.o entreeSortieLC.o
+biblioH.o: biblioH.c
+	gcc -Wall -c -o biblioH.o biblioH.c
 
+entreeSortieH.o: entreeSortieH.c
+	gcc -Wall -c -o entreeSortieH.o entreeSortieH.c
+
+mainH: biblioH.o entreeSortieH.o ex2.c 
+	gcc -Wall -o main ex2.c entreeSortieH.o biblioH.o
+
+mainlc:  main.o biblioC.o entreeSortieLC.o
+	gcc -o main -Wall main.o biblioC.o entreeSortieLC.o
 
 clean:
 	rm -rf *.o
