@@ -160,6 +160,8 @@ return 0;
 
 // version du main avec les tables de hachage
 
+#define TAILLEM 10
+
 int main(int argc, char** argv){
     if (argc != 3) {
         printf("Veuillez entrer le nom du fichier et le nombre de ligne a lire\n");
@@ -176,7 +178,7 @@ int main(int argc, char** argv){
     enregistrer_biblioH(b,"derya.txt");
     char buffer[256];
     int rep ;
-    BiblioH * b2=creer_biblio(10);
+    BiblioH * b2=creer_biblioH(TAILLEM);
     int num;
     char titre[256];
     char auteur[256];
@@ -189,7 +191,7 @@ int main(int argc, char** argv){
         case 1:
             choix_biblio(&select_biblio, buffer);
             printf ( "Affichage : \n");
-            affichage_bibliotheque(select_biblio==1?b:b2);
+            afficher_BiblioH(select_biblio==1?b:b2);
             break ;
         case 2:
     
@@ -198,7 +200,7 @@ int main(int argc, char** argv){
             fgets(buffer, 256, stdin);
             if (sscanf(buffer, "%d %s %s", &num, titre, auteur) == 3) {
 
-                inserer_en_tete(select_biblio==1?b:b2, num, titre, auteur);
+                inserer(select_biblio==1?b:b2, num, titre, auteur);
                 printf("Ajout fait\n");
             } else {
                 printf("Erreur de format\n");
@@ -207,12 +209,12 @@ int main(int argc, char** argv){
         case 3:
             choix_biblio(&select_biblio, buffer);
             if(b2!=NULL){
-                liberer_biblio(select_biblio==1?b:b2);
+                liberer_biblioH(select_biblio==1?b:b2);
             }
             if (select_biblio==1){
-                b=creer_biblio();
+                b=creer_biblioH(TAILLEM);
             }else if(select_biblio==2){
-                b2=creer_biblio();
+                b2=creer_biblioH(TAILLEM);
             }
             printf("la bibliothèque est crée\n");
             break ;
@@ -223,7 +225,7 @@ int main(int argc, char** argv){
             fgets(buffer, 256, stdin);
             if (sscanf(buffer, "%d\n", &num) == 1) {
                 
-                affichage_livre(recherche_ouvrage_num(select_biblio==1?b:b2,num));
+                afficher_LivreH(recherche_par_numero_H(select_biblio==1?b:b2,num));
             
             } else {
                 printf("Erreur de format\n");
@@ -235,7 +237,7 @@ int main(int argc, char** argv){
            
             fgets(buffer, 256, stdin);
             if (sscanf(buffer, "%s", titre) == 1) {
-                affichage_livre(recherche_ouvrage_titre(select_biblio==1?b:b2, titre));
+                afficher_LivreH(recherche_par_titre_H(select_biblio==1?b:b2, titre));
 
             } else {
                 printf("Erreur de format\n");
@@ -246,21 +248,21 @@ int main(int argc, char** argv){
             printf("Veuillez écrire le numéro, le titre et l'auteur de l'ouvrage : ");
             fgets(buffer, 256, stdin);
             if (sscanf(buffer, "%d %s %s", &num, titre, auteur) == 3) {
-                supprimer_un_ouvrage(select_biblio==1?b:b2,num,auteur, titre);
+                supprimer_ouvrage_H(select_biblio==1?b:b2,num, titre, auteur);
                 printf("l'ouvrage num : %d titre : %s d'auteur : %s a été supprimer\n", num, titre, auteur);
             }
             break;
         case 7:
-            fusion_deux_bibliotheque(&b,&b2);
-            affichage_bibliotheque(b);
+            fusion_BiblioH(&b,&b2);
+            afficher_BiblioH(b);
             printf("les bibliothèque ont été fusionner ");
             break;
         case 8:
             choix_biblio(&select_biblio, buffer);
-            Livre * livre=rechercher_ouvrage_identique(select_biblio==1?b:b2);
+            LivreH * livre=recherche_ouvrage_plusieurs_exemplaires(select_biblio==1?b:b2);
             while (livre){
-                affichage_livre(livre);
-                livre = livre->suiv;
+                afficher_LivreH(livre);
+                livre = livre->suivant;
             }
             break;
         case 9:
@@ -268,7 +270,7 @@ int main(int argc, char** argv){
             printf("Veuillez écrire le nom de l'auteur : ");
             fgets(buffer, 256, stdin);
             if (sscanf(buffer, "%s\n", auteur) == 1) {
-                affichage_bibliotheque(recherche_livres_auteur(select_biblio==1?b:b2,auteur));
+                afficher_BiblioH(recherche_livres_auteur_H(select_biblio==1?b:b2,auteur));
             }
             break;
         default:
@@ -277,8 +279,8 @@ int main(int argc, char** argv){
     
         }
 } while ( rep !=0) ;
-liberer_biblio(b);
-liberer_biblio(b2);
+liberer_biblioH(b);
+liberer_biblioH(b2);
 printf ( "Merci et au revoir\n" );
 return 0;      
 }

@@ -6,7 +6,7 @@
 
 
 int main(){
-    BiblioH * b = creer_biblio(10);
+    BiblioH * b = creer_biblioH(10);
     printf("Voici la bibliotheque:\n");
     inserer(b, 0, "a", "a");
     inserer(b, 1, "a", "a");
@@ -27,10 +27,10 @@ int main(){
 
     while (doublons){
         tmp = doublons->suivant;
-        liberer_livre(doublons);
+        liberer_livreH(doublons);
         doublons = tmp;
     }
-    liberer_biblio(b);
+    liberer_biblioH(b);
 
 
     

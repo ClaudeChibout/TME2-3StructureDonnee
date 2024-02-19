@@ -40,7 +40,7 @@ void liberer_livreH(LivreH * l){
     
 }
 
-BiblioH * creer_biblio(int m){
+BiblioH * creer_biblioH(int m){
     BiblioH * b = (BiblioH *)malloc(sizeof(BiblioH));
     b->m = m; // taille du tableau
     b->T = (LivreH **) malloc(sizeof(LivreH *)*m); // tableau de pointeur
@@ -128,7 +128,7 @@ LivreH * recherche_par_titre_H(BiblioH * b, char * titre){
 }
 
 BiblioH * recherche_livres_auteur_H(BiblioH * b, char * auteur){
-    BiblioH * bnew=creer_biblio(b->m);
+    BiblioH * bnew=creer_biblioH(b->m);
     for (int i =0; i<b->m; i++){
         LivreH * tmp = b->T[i];
         while(tmp){
@@ -179,7 +179,7 @@ void fusion_BiblioH(BiblioH **b1, BiblioH **b2){
     }
 
     if (*b1 == NULL ){
-        *b1 = creer_biblio((*b2)->m);
+        *b1 = creer_biblioH((*b2)->m);
     }
 
     for( int i = 0; i < (*b2)->m; i++){
