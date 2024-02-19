@@ -187,21 +187,33 @@ void fusion_BiblioH(BiblioH **b1, BiblioH **b2){
 }
 
 LivreH * recherche_ouvrage_plusieurs_exemplaires(BiblioH * b){
-    LivreH * res = NULL;
-
+    if (b == NULL) return NULL;
+    LivreH * res = NULL; // notre liste chainé contenant les doublons
+    // parcours le tableau b->T pour acceder aux listes chainées
     for (int i =0; i<b->m; i++){
-        LivreH * tmp = b->T[i];
+        LivreH * tmp = b->T[i]; // liste chainé contenue dans la case d'indice i du tableau b->T
+        // on parcourt la liste chainée 
         while (tmp){
+            // idem pour un deuxieme parcourt
             LivreH * tmp2 = b->T[i];
+            int cond = 0;// booleen pour ajouter le premier livre si plusieurs exemplaire ont été trouvé
             while (tmp2){
-                int cond = 0; // booleen pour ajouter le premier livre si plusieurs exemplaire ont été trouvé
                 tmp2 = tmp2->suivant;
-                if (strcmp(tmp->auteur,tmp2->auteur)==0 && strcmp(tmp->titre,tmp2->titre)==0){
-                    LivreH* new = creer_livre(tmp2->num, tmp->titre,tmp2->auteur);
+                if (strcmp(tmp->auteur,tmp2->auteur)==0 && strcmp(tmp->titre,tmp2->titre)==0 && tmp->num != tmp2->num){
+                    LivreH* new = creer_livre(tmp2->num, tmp2->titre,tmp2->auteur);
                     new->suivant = res;
                     res = new;
+                    cond+=1;
                 }
             }
+
+            if (cond > 0){
+                LivreH* new = creer_livre(tmp->num, tmp->titre,tmp->auteur);
+                new->suivant = res;
+                res = new;
+            }
+
+
 
             tmp = tmp->suivant;
         }

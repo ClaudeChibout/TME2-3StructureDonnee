@@ -17,9 +17,23 @@ typedef struct table {
 
 LivreH * creer_livre(int num, char* titre, char* auteur);
 void liberer_livre(LivreH * l);
-void liberer_biblio(BiblioH * b);
+
 BiblioH * creer_biblio(int m);
+void liberer_biblio(BiblioH * b);
+
+void afficher_BiblioH(BiblioH * b);
+void afficher_LivreH(LivreH * livre);
+
+int fonctionClef(char * auteur);
 int fonctionHachage(int cle, int m);
+
 void inserer(BiblioH* b,int num,char* titre,char* auteur);
+LivreH * recherche_par_numero_H(BiblioH * b, int num);
+LivreH * recherche_par_titre_H(BiblioH * b, char * titre);
+LivreH * recherche_livres_auteur_H(BiblioH * b, char * auteur);
+void * supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur);
+void fusion_BiblioH(BiblioH **b1, BiblioH **b2);
+LivreH * recherche_ouvrage_plusieurs_exemplaires(BiblioH * b);
+
 
 #endif
