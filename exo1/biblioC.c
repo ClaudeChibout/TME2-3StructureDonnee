@@ -14,13 +14,12 @@ Livre * creer_livre(int num, char * titre, char *auteur){
 
 }
 
-void liberer_livre(Livre * l){
-    //libere un livre
-    if (l!=NULL){
+void liberer_livre(Livre *l) {
+    // Libère un livre
+    if (l != NULL) {
         free(l->titre);
         free(l->auteur);
-        free(l);
-        l=NULL;
+        free(l); // Libère la mémoire de la structure du livre
     }
 }
 
@@ -31,20 +30,20 @@ Biblio * creer_biblio(){
     return b;
 }
 
-void liberer_biblio(Biblio * b){
-    //mibère une bibliothèque
-    if (b!=NULL){
-        Livre * livre= b->L;
-        Livre * tmp=NULL;
-        while(livre){
-            tmp=livre;
-            livre=livre->suiv;
+void liberer_biblio(Biblio *b) {
+    // Libère une bibliothèque
+    if (b != NULL) {
+        Livre *livre = b->L;
+        Livre *tmp = NULL;
+        while (livre) {
+            tmp = livre;
+            livre = livre->suiv;
             liberer_livre(tmp);
-            }
-        free(b);
-        b=NULL;
+        }
+        free(b); // Libère la mémoire de la structure de la bibliothèque
     }
 }
+
 
 void inserer_en_tete(Biblio* b, int num, char * titre, char * auteur){
     //insère en tete un livre

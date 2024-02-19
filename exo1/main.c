@@ -143,6 +143,7 @@ int main(int argc, char** argv){
         }
 } while ( rep !=0) ;
 liberer_biblio(b);
+liberer_biblio(b2);
 printf ( "Merci et au revoir\n" );
 return 0;
 
