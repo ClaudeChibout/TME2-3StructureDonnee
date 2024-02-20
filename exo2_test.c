@@ -64,9 +64,5 @@ int main(){
         doublons = tmp;
     }
   
-
-
-    
-
     return 0;
 }
