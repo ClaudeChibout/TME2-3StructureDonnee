@@ -19,19 +19,19 @@ Puis nous avons BibliothèqueH et LivreH qui utilise des tables d'hachage.
 Le projet comporte les fichier suivant:
 
 bilbioC.c //où est codé toute les fonction manipulant les livres et bibliothèque
-bilbioC.h //où on retrouve les prototypes des fonction dans biblioC.c
+bilbioC.h //où on retrouve les prototypes des fonction dans biblioC.c et les structures bibliothèque et livres
 biblioH.c //même principe avec des tables de hachages
 biblioH.h
 entreeSortieLC.c //qui implemente 2 fonction pour gerer les entrées et sortie du main 
-entreeSortieLC.h //contient les prototypes du fichier entreeSortieLC
+entreeSortieLC.h //contient les prototypes du fichier entreeSortieLC et les structures bibliothèque et livres
 entreeSortieH.c //qui implemente 2 fonction pour gerer les entrées et sortie du main 
 entreeSortieH.h
 
 main.c //contient 2 main une pour les listes chainée et l'autre pour les tablesde hachages
 exo3.c //un fichier qui contient les réponses de l'exercice 3
 
-exo.1 //fichier qui teste tt les fonctions de l'exo 1
-exo.2 //fichier qui teste tt les fonctions de l'exo 2
+exo1_test.c //fichier qui teste tt les fonctions de l'exo 1
+ex2.c //fichier qui teste tt les fonctions de l'exo 2
 
 
 
