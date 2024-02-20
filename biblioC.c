@@ -115,9 +115,15 @@ Livre* recherche_ouvrage_titre(Biblio * b, char * titre){
 Biblio* recherche_livres_auteur(Biblio * b, char * auteur){
     //recherche un livre avec le nom de l'auteur
     Livre * l=b->L;
-    Biblio *  L
-
-
+    Biblio * bnew=creer_biblio();
+    if(b!=NULL){
+        while(l){
+            if (strcmp(l->auteur,auteur)==0){
+                inserer_en_tete(bnew, l->num, l->titre, l->auteur);
+            }
+            l=l->suiv;
+        }
+    }
     return bnew;
 }
 
@@ -168,7 +174,7 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
     
 }
 
-Livre * rechercher_ouvrage_identique(Biblio * b){
+ Livre * rechercher_ouvrage_identique(Biblio * b){
 
     Livre * livre_double=NULL;
     Livre * livre_temp=NULL;
@@ -221,6 +227,4 @@ Livre * rechercher_ouvrage_identique(Biblio * b){
     return livre_double;
 
 }   
-
-   
 
