@@ -7,6 +7,7 @@
 
 int main(){
     BiblioH * b = creer_biblioH(10);
+    
     printf("Voici la bibliotheque:\n");
     inserer(b, 0, "a", "a");
     inserer(b, 1, "a", "a");
