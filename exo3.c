@@ -16,6 +16,8 @@ void comparaison(char * nomfic, int nb_ligne){
     // et stock ces valeurs dans le fichier data.txt
 
     Biblio * BLC = charger_n_entrees(nomfic, nb_ligne);
+    affichage_bibliotheque(BLC);
+    
     int debutLC = clock();
     Livre * LLC = rechercher_ouvrage_identique(BLC);
     int finLC = clock();
@@ -200,7 +202,7 @@ int main(int argc, char *argv[]){
     liberer_biblioH(ma_biblio);
 
 
-    for (int i = 1000; i<= 10000; i+= 1000){
+    for (int i = 10; i<= 10; i+= 1000){
         comparaison(nom_fichier, i);
     }
 
