@@ -8,13 +8,13 @@ int fonctionClef(char * auteur){
     if (auteur == NULL){
         return 0;
     }
-    int hash = 0;
+    int cle = 0;
     int i = 0;
     for ( char c = auteur[i]; c != '\0'; c = auteur[i]){
-        hash += (int)c;
+        cle += (int)c;
         i++;
     }
-    return hash;
+    return cle;
 }
 
 LivreH * creer_livreH(int num, char* titre, char* auteur){
@@ -69,7 +69,7 @@ void liberer_biblioH(BiblioH * b){
 
 int fonctionHachage(int cle, int m){
     float A = (sqrt(5)-1)/2;
-    return (int)(m*( cle*A - ((int)cle*A) ));
+    return (int)(m*( cle*A - ((int)(cle*A)) ));
 }
 
 void inserer(BiblioH* b,int num,char* titre,char* auteur){

@@ -11,6 +11,45 @@
 #include <time.h>
 
 
+void comparaison(char * nomfic, int nb_ligne){
+    // Cette fonction calcul les temps d'éxecution pour nos deux structures avec  de recherche ouvrage identique
+    // et stock ces valeurs dans le fichier data.txt
+
+    Biblio * BLC = charger_n_entrees(nomfic, nb_ligne);
+    int debutLC = clock();
+    Livre * LLC = rechercher_ouvrage_identique(BLC);
+    int finLC = clock();
+
+    Livre * tmpLC = NULL;
+    while(LLC){
+        tmpLC = LLC;
+        LLC = LLC->suiv;
+        liberer_livre(tmpLC);
+    }
+    liberer_biblio(BLC);
+
+
+
+    BiblioH * BH = charger_n_entrees_BiblioH(nomfic, nb_ligne, 500);
+    int debutH = clock();
+    LivreH * LH = recherche_ouvrage_plusieurs_exemplaires(BH);
+    int finH = clock();
+
+    LivreH * tmpH = NULL;
+    while(LH){
+        tmpH = LH;
+        LH = LH->suivant;
+        liberer_livreH(tmpH);
+    }
+    liberer_biblioH(BH);
+
+    FILE *f = fopen("data.txt", "w+");
+    fprintf(f, "%d %f %f", nb_ligne, ((double)finLC-debutLC)/CLOCKS_PER_SEC,((double)finH-debutH)/CLOCKS_PER_SEC);
+    fclose(f);
+
+}
+
+
 int main(int argc, char *argv[]){
     if (argc != 3) {
         printf("Veuillez entrer le nom du fichier et le nombre de ligne a lire\n");
@@ -115,7 +154,7 @@ int main(int argc, char *argv[]){
 //---------------------------------------------------------------------------------------
     printf("\n\n-------------------------\n\n");
 
-    ma_biblio =  charger_n_entrees_BiblioH(nom_fichier,nombre_ligne, 2500);
+    ma_biblio =  charger_n_entrees_BiblioH(nom_fichier,nombre_ligne, 5000);
     printf("Avec la table de hachage dont le tableau a %d cases\n",ma_biblio->m);
     debut = clock();
     recherche_par_numero_H(ma_biblio, 5844); // Remplacez par le numéro de livre réel
@@ -159,6 +198,14 @@ int main(int argc, char *argv[]){
     printf("Temps d'exécution de recherche_livres_auteur_H : %f secondes\n", temps_ecoule);
 
     liberer_biblioH(ma_biblio);
+
+
+    for (int i = 1000; i<= 50000; i+= 1000){
+        comparaison(nom_fichier, i);
+    }
+
+
+
 
     return 0;
 
