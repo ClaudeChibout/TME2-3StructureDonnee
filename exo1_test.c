@@ -49,7 +49,12 @@ int main(){
         livretmp=livretmp->suiv;
     }
     printf("\n");
-
+    printf("affiche de ma_biblio2\n");
+    affichage_bibliotheque(ma_biblio2);
+    printf("\n");
+    printf("affiche de ma_biblio\n");
+    affichage_bibliotheque(ma_biblio);
+    printf("\n");
     fusion_deux_bibliotheque(&ma_biblio,&ma_biblio2);
     printf("affichage des bibliothèque fusionner\n");
     affichage_bibliotheque(ma_biblio);
