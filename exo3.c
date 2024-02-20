@@ -46,7 +46,7 @@ void comparaison(char * nomfic, int nb_ligne){
     liberer_biblioH(BH);
 
     FILE *f = fopen("data.txt", "a");
-    fprintf(f, "%d %f %f\n", nb_ligne, 0.,((double)finH-debutH)/CLOCKS_PER_SEC);
+    fprintf(f, "%d %f %f\n", nb_ligne, ((double)finLC-debutLC)/CLOCKS_PER_SEC,((double)finH-debutH)/CLOCKS_PER_SEC);
     fclose(f);
 
 }
@@ -201,10 +201,11 @@ int main(int argc, char *argv[]){
 
     liberer_biblioH(ma_biblio);
 
-
-    for (int i = 10; i<= 10; i+= 1000){
+    /*
+    for (int i = 1000; i<= 50000;i+= 1000){
         comparaison(nom_fichier, i);
     }
+    */
 
 
 
