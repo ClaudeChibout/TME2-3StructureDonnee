@@ -1,6 +1,7 @@
 #include "biblioC.h"
 #include "entreeSortieLC.h"
-//#include "biblioH.h"
+#include "biblioH.h"
+#include "entreeSortieH.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,6 +21,7 @@ int main(int argc, char *argv[]){
 
 
     Biblio *biblio = charger_n_entrees(nom_fichier,nombre_ligne);
+    BiblioH * biblioH = charger_n_entrees_BiblioH(nom_fichier, nombre_ligne);
     inserer_en_tete(biblio, 1, "Livre 1", "Auteur 1");
 
   
