@@ -160,7 +160,7 @@ return 0;
 
 // version du main avec les tables de hachage
 
-#define TAILLEM 10
+#define TAILLEM 100
 
 int main(int argc, char** argv){
     if (argc != 3) {
@@ -173,7 +173,7 @@ int main(int argc, char** argv){
     int nombre_ligne = atoi(argv[2]);
 
 
-    BiblioH *b = charger_n_entrees_BiblioH(nom_fichier,nombre_ligne, 200);
+    BiblioH *b = charger_n_entrees_BiblioH(nom_fichier,nombre_ligne, TAILLEM);
     //affichage_bibliotheque(b);
     enregistrer_biblioH(b,"derya.txt");
     char buffer[256];
