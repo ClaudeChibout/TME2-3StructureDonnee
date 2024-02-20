@@ -174,7 +174,7 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
     
 }
 
- Livre * rechercher_ouvrage_identique(Biblio * b){
+Livre * rechercher_ouvrage_identique(Biblio * b){
 
     Livre * livre_double=NULL;
     Livre * livre_temp=NULL;
@@ -227,4 +227,6 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
     return livre_double;
 
 }   
+
+   
 
