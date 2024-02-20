@@ -129,14 +129,12 @@ LivreH * recherche_par_titre_H(BiblioH * b, char * titre){
 
 BiblioH * recherche_livres_auteur_H(BiblioH * b, char * auteur){
     BiblioH * bnew=creer_biblioH(b->m);
-    for (int i =0; i<b->m; i++){
-        LivreH * tmp = b->T[i];
-        while(tmp){
-            if (strcmp(tmp->auteur, auteur)){
-                inserer(bnew, tmp->num, tmp->titre, tmp->auteur);
-            }
-            tmp=tmp->suivant;
+    LivreH * tmp = b->T[fonctionHachage(fonctionClef(auteur), b->m)];
+    while(tmp){
+        if (strcmp(tmp->auteur, auteur)==0){
+            inserer(bnew, tmp->num, tmp->titre, tmp->auteur);
         }
+        tmp=tmp->suivant;
     }
     return bnew;
 }
@@ -150,7 +148,7 @@ void supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur){
     if (tmp == NULL) return;
 
     // cas ou le livre est en debut de chaine
-    if (tmp->num == num && strcmp(tmp->auteur, auteur) && strcmp(tmp->titre, titre)){
+    if (tmp->num == num && strcmp(tmp->auteur, auteur)==0 && strcmp(tmp->titre, titre)==0){
             b->T[hash] = b->T[hash]->suivant;
             liberer_livreH(tmp);
             return;
@@ -160,7 +158,7 @@ void supprimer_ouvrage_H(BiblioH * b, int num, char * titre, char * auteur){
     LivreH * prec = tmp;
     tmp=tmp->suivant;
     while(tmp){
-        if (tmp->num == num && strcmp(tmp->auteur, auteur) && strcmp(tmp->titre, titre)){
+        if (tmp->num == num && strcmp(tmp->auteur, auteur)==0 && strcmp(tmp->titre, titre)==0){
             prec->suivant = tmp->suivant;
             liberer_livreH(tmp);
             return;
