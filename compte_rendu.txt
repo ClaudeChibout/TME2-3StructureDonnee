@@ -31,7 +31,7 @@ main.c //contient 2 main une pour les listes chainée et l'autre pour les tables
 exo3.c //un fichier qui contient les réponses de l'exercice 3
 
 exo1_test.c //fichier qui teste tt les fonctions de l'exo 1
-ex2.c //fichier qui teste tt les fonctions de l'exo 2
+exo2_test.c //fichier qui teste tt les fonctions de l'exo 2
 
 
 
