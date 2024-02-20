@@ -5,7 +5,7 @@
 #include <string.h>
 
 Biblio * charger_n_entrees(char * nomfic,int n){
-    Biblio *b=(Biblio*)(malloc(sizeof(Biblio)));
+    Biblio *b=creer_biblio();
     char titre[256];
     char auteur[256];
     int num;

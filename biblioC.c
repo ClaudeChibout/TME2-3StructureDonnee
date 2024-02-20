@@ -175,7 +175,7 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
 }
 
  Livre * rechercher_ouvrage_identique(Biblio * b){
-    Livre * livre_double=NULL;
+    Livre * livre_res=NULL;
     Livre * livre_temp=NULL;
     Livre * livre_tete1=b->L;
 
@@ -185,8 +185,8 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
         while(livre_temp){
             if(strcmp(livre_tete1->auteur,livre_temp->auteur)==0 && strcmp(livre_tete1->titre,livre_temp->titre)==0 && livre_temp->num != livre_tete1->num){
                 Livre * tmp=creer_livre(livre_temp->num, livre_temp->titre, livre_temp->auteur);
-                tmp->suiv=livre_double;
-                livre_double=tmp;
+                tmp->suiv=livre_res;
+                livre_res=tmp;
                 cmp++;
             }
             livre_temp=livre_temp->suiv;
@@ -194,16 +194,16 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
         
         if(cmp>0){
             Livre * tmp=creer_livre(livre_tete1->num, livre_tete1->titre, livre_tete1->auteur);
-            tmp->suiv=livre_double;
-            livre_double=tmp;
+            tmp->suiv=livre_res;
+            livre_res=tmp;
         }
         livre_tete1=livre_tete1->suiv;
         
     }
-    if(livre_double==NULL){
+    if(livre_res==NULL){
         printf("Il n'y a pas de doublons dans la bibliothèque.\n");
     }else{
-        Livre * ld= livre_double;
+        Livre * ld= livre_res;
         while(ld){
             Livre * ld2= ld->suiv;
             Livre * prec = ld;
@@ -220,7 +220,7 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
             ld = ld->suiv;
         }
     }
-    return livre_double;
+    return livre_res;
 
 }   
 
