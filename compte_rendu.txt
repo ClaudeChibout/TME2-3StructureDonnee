@@ -1,0 +1,59 @@
+Projet de Claude Chibout et Derya Keskin
+
+
+— Les r´eponses aux questions.
+— La description des jeux d’essais utilis´es pour valider votre code ou ´evaluer les
+performances de vos programmes.
+— L’analyse comment´ee (et statistique) des performances de vos programmes (ana-
+lyse des r´esultats exp´erimentaux).
+
+
+Ce projet traite la gestion d'une bibliothèque, qui represente un ensemble de livre. Les 
+lives ont un numéro, un auteur et un titre. Dans le cadre de ce projet les bibliothèque et livres
+sont representer sous forme de structures.
+Dans le projet nous allons venir comparer une liste simplement chaı̂née de struct (Partie 1).
+et une table de hachage de struct (Partie 2).
+Nous avons donc 2 structures Bibliothèque et Livre qui utilise les listes chainée.
+Puis nous avons BibliothèqueH et LivreH qui utilise des tables d'hachage.
+
+Le projet comporte les fichier suivant:
+
+bilbioC.c //où est codé toute les fonction manipulant les livres et bibliothèque
+bilbioC.h //où on retrouve les prototypes des fonction dans biblioC.c
+biblioH.c //même principe avec des tables de hachages
+biblioH.h
+entreeSortieLC.c //qui implemente 2 fonction pour gerer les entrées et sortie du main 
+entreeSortieLC.h //contient les prototypes du fichier entreeSortieLC
+entreeSortieH.c //qui implemente 2 fonction pour gerer les entrées et sortie du main 
+entreeSortieH.h
+
+main.c //contient 2 main une pour les listes chainée et l'autre pour les tablesde hachages
+exo3.c //un fichier qui contient les réponses de l'exercice 3
+
+exo.1 //fichier qui teste tt les fonctions de l'exo 1
+exo.2 //fichier qui teste tt les fonctions de l'exo 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
