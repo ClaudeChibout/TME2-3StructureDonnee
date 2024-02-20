@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "biblioH.h"
 
-BiblioH* charger_n_entrees_BiblioH(char* nomfic, int n){
+BiblioH* charger_n_entrees_BiblioH(char* nomfic, int n,int tailleTab){
     //permettant de lire n lignes du fichier
     //et de les stocker dans une bibliothèque.
 
@@ -14,7 +14,7 @@ BiblioH* charger_n_entrees_BiblioH(char* nomfic, int n){
     }
 
 
-    BiblioH * b = creer_biblioH(n); // crée la bibliothèque
+    BiblioH * b = creer_biblioH(tailleTab); // crée la bibliothèque
     char buffer[256];
 
     // pour le nombre de ligne demandé
