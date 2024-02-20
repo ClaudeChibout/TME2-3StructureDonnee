@@ -1,4 +1,4 @@
-all : main exo3 exo1_test 
+all : main exo3 exo1_test exo2_test
 
 biblioC.o: biblioC.c biblioC.h
 	gcc -c biblioC.c biblioC.h
@@ -20,6 +20,9 @@ exo3: biblioH.o entreeSortieH.o biblioC.o entreeSortieLC.o exo3.c
 
 exo1_test : biblioC.o entreeSortieLC.o exo1_test.c 
 	gcc -Wall -o exo1_test exo1_test.c biblioC.o entreeSortieLC.o
+
+exo2_test : biblioH.o entreeSortieH.o exo2_test.c
+	gcc -Wall -o exo2_test exo2_test.c biblioH.o entreeSortieH.o
 
 clean:
 	rm -rf *.o
