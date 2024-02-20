@@ -173,7 +173,7 @@ int main(int argc, char** argv){
     int nombre_ligne = atoi(argv[2]);
 
 
-    BiblioH *b = charger_n_entrees_BiblioH(nom_fichier,nombre_ligne);
+    BiblioH *b = charger_n_entrees_BiblioH(nom_fichier,nombre_ligne, 200);
     //affichage_bibliotheque(b);
     enregistrer_biblioH(b,"derya.txt");
     char buffer[256];
