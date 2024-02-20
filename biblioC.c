@@ -175,15 +175,11 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
 }
 
  Livre * rechercher_ouvrage_identique(Biblio * b){
-
     Livre * livre_double=NULL;
     Livre * livre_temp=NULL;
     Livre * livre_tete1=b->L;
-    Livre * livre_tete=b->L;
 
     while(livre_tete1){
-        // parcours livre double pour vérifier que le livre courant ne soit pas dedans 
-        Livre * prc_double=livre_double;
         livre_temp=b->L;
         int cmp=0;
         while(livre_temp){

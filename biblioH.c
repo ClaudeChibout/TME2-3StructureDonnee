@@ -185,6 +185,7 @@ void fusion_BiblioH(BiblioH **b1, BiblioH **b2){
         while (tmp)
         {
             inserer(*b1, tmp->num, tmp->titre, tmp->auteur);
+            tmp= tmp->suivant;
         }
     }
     liberer_biblioH(*b2);

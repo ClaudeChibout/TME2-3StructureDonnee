@@ -20,8 +20,8 @@ int main(){
     BiblioH * b2 = creer_biblioH(10);
     
     printf("Voici la bibliotheque:\n");
-    inserer(b2, 0, "livre11", "auteur11");
-    inserer(b2, 1, "livre22", "auteur22");
+    inserer(b2, 01, "livre11", "auteur11");
+    inserer(b2, 11, "livre22", "auteur22");
     afficher_BiblioH(b2);
 
     printf("affiche le livre ayant le numero2\n");
@@ -49,10 +49,10 @@ int main(){
     }
     
     printf("\n");
-    //printf("nous allons fusionner b et b2");
-    //fusion_BiblioH(&b,&b2);
-    //afficher_BiblioH(b);
-    //printf("la fusion a bien étais faite");
+    printf("nous allons fusionner b et b2");
+    fusion_BiblioH(&b,&b2);
+    afficher_BiblioH(b);
+    printf("la fusion a bien étais faite");
 
 
     liberer_biblioH(b);
