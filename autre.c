@@ -35,9 +35,9 @@ int main(int argc, char *argv[]){
     recherche_livres_auteur(biblio, "Auteur 1");
     clock_t fin_auteur = clock();
 
-    printf("Temps pour recherche par numéro : %ld ticks\n", fin_num - debut_num);
-    printf("Temps pour recherche par titre : %ld ticks\n", fin_titre - debut_titre);
-    printf("Temps pour recherche par auteur : %ld ticks\n", fin_auteur - debut_auteur);
+    printf("Temps pour recherche par numéro : %f s\n", ((double)fin_num - debut_num)/ CLOCKS_PER_SEC);
+    printf("Temps pour recherche par titre : %f s\n", ((double)fin_titre - debut_titre)/ CLOCKS_PER_SEC);
+    printf("Temps pour recherche par auteur : %f s\n", ((double)fin_auteur - debut_auteur)/ CLOCKS_PER_SEC);
 
 
     liberer_biblio(biblio);
