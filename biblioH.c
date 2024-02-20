@@ -102,10 +102,10 @@ void afficher_BiblioH(BiblioH * b){
 }
 
 LivreH * recherche_par_numero_H(BiblioH * b, int num){
-    for (int i =0; i<b->m; i++){
+    for (int i =0; i<(b->m); i++){
         LivreH * tmp = b->T[i];
         while(tmp){
-            if (tmp->num == num){
+            if ((tmp->num) == num){
                 return tmp;
             }
             tmp=tmp->suivant;
@@ -115,10 +115,10 @@ LivreH * recherche_par_numero_H(BiblioH * b, int num){
 }
 
 LivreH * recherche_par_titre_H(BiblioH * b, char * titre){
-    for (int i =0; i<b->m; i++){
+    for (int i =0; i<(b->m); i++){
         LivreH * tmp = b->T[i];
         while(tmp){
-            if (strcmp(tmp->titre, titre)){
+            if (strcmp(tmp->titre, titre) == 0){
                 return tmp;
             }
             tmp=tmp->suivant;
