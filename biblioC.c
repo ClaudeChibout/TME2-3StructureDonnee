@@ -115,15 +115,9 @@ Livre* recherche_ouvrage_titre(Biblio * b, char * titre){
 Biblio* recherche_livres_auteur(Biblio * b, char * auteur){
     //recherche un livre avec le nom de l'auteur
     Livre * l=b->L;
-    Biblio * bnew=creer_biblio();
-    if(b!=NULL){
-        while(l){
-            if (strcmp(l->auteur,auteur)==0){
-                inserer_en_tete(bnew, l->num, l->titre, l->auteur);
-            }
-            l=l->suiv;
-        }
-    }
+    Biblio *  L
+
+
     return bnew;
 }
 
