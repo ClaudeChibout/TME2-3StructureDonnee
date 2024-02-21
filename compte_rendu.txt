@@ -1,11 +1,5 @@
 Projet de Claude Chibout 21202978 et Derya Keskin
 
-— La description des jeux d’essais utilis´es pour valider votre code ou ´evaluer les
-performances de vos programmes.
-— L’analyse comment´ee (et statistique) des performances de vos programmes (ana-
-lyse des r´esultats exp´erimentaux).
-
-
 Ce projet on traite la gestion d'une bibliothèque, composé d'un ensemble de livre. 
 Les livres ont un numéro, un auteur et un titre.
 Les bibliothèque et livres sont representer sous forme de structures.
@@ -60,7 +54,6 @@ Réponses exercice 3 :
         donc forcément on parcours moins d'élément
         donc plus rapide
 
-
 Essaie exo1:
     Dans exo1_test.c on test toutes les fonctions demandé dans l'exo1
     avec un affichage pour s'assurer que tout fonctionne
@@ -70,30 +63,3 @@ Essaie exo2:
     Dans exo2_test.c on test toutes les fonctions demandé dans l'exo2
     avec un affichage pour s'assurer que tout fonctionne
     avec les structures qui implémente les tables de hachage
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
