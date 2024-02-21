@@ -175,14 +175,19 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
 }
 
  Livre * rechercher_ouvrage_identique(Biblio * b){
+    // fonction qui retourne une liste chainée comportant tous les exemplaires
+    // des ouvrages présents en plusieurs exemplaires (titre et auteur qui sont égaux)
     Livre * livre_res=NULL;
     Livre * livre_temp=NULL;
     Livre * livre_tete1=b->L;
-
+    // premier parcours
     while(livre_tete1){
+
+        // deuxieme parcours
         livre_temp=b->L;
         int cmp=0;
         while(livre_temp){
+            // ajoute les livres identique a livre_tete1 mais avec des numéros différents
             if(strcmp(livre_tete1->auteur,livre_temp->auteur)==0 && strcmp(livre_tete1->titre,livre_temp->titre)==0 && livre_temp->num != livre_tete1->num){
                 Livre * tmp=creer_livre(livre_temp->num, livre_temp->titre, livre_temp->auteur);
                 tmp->suiv=livre_res;
@@ -191,7 +196,7 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
             }
             livre_temp=livre_temp->suiv;
         }
-        
+        // S'il existe plusieurs exemplaire du livre dans livre_tete1 alors on l'ajoute a la liste resultante
         if(cmp>0){
             Livre * tmp=creer_livre(livre_tete1->num, livre_tete1->titre, livre_tete1->auteur);
             tmp->suiv=livre_res;
@@ -200,9 +205,14 @@ void fusion_deux_bibliotheque(Biblio ** b1, Biblio ** b2){
         livre_tete1=livre_tete1->suiv;
         
     }
+
+
     if(livre_res==NULL){
         printf("Il n'y a pas de doublons dans la bibliothèque.\n");
     }else{
+        // on enleve les doublons de liste_res
+        // pour obtenir seulement la liste des ouvrages en plusieurs exemplaires
+        // et tous les exemplaires de ceux-ci
         Livre * ld= livre_res;
         while(ld){
             Livre * ld2= ld->suiv;
