@@ -5,6 +5,7 @@
 #include <math.h>
 
 int fonctionClef(char * auteur){
+    // permet de trouver la clé associé a l'auteur
     if (auteur == NULL){
         return 0;
     }
@@ -18,6 +19,7 @@ int fonctionClef(char * auteur){
 }
 
 LivreH * creer_livreH(int num, char* titre, char* auteur){
+    // permet de créer le livre correctement
     LivreH * L = (LivreH *)malloc(sizeof(LivreH));
     L->auteur = strdup(auteur);
     L->titre = strdup(titre);
@@ -28,6 +30,7 @@ LivreH * creer_livreH(int num, char* titre, char* auteur){
 }
 
 void liberer_livreH(LivreH * l){
+    // permet de liberer le livre correctement
     if (l != NULL){
         if (l->titre != NULL){
             free(l->titre);
@@ -41,6 +44,7 @@ void liberer_livreH(LivreH * l){
 }
 
 BiblioH * creer_biblioH(int m){
+    // permet de creer la bibliothèque correctement avec le tableau de taille m
     BiblioH * b = (BiblioH *)malloc(sizeof(BiblioH));
     b->m = m; // taille du tableau
     b->T = (LivreH **) malloc(sizeof(LivreH *)*m); // tableau de pointeur
@@ -52,6 +56,7 @@ BiblioH * creer_biblioH(int m){
 }
 
 void liberer_biblioH(BiblioH * b){
+    // permet de liberer la bibliothèque correctement
     if (b!=NULL){
         for(int i=0; i<b->m; i++){
             LivreH* tmp = NULL;
@@ -84,12 +89,14 @@ void inserer(BiblioH* b,int num,char* titre,char* auteur){
 }
 
 void afficher_LivreH(LivreH * livre){
+    // Affiche le Livre
     if (livre != NULL){
         printf("%d %s %s\n", livre->num, livre->titre, livre->auteur);
     }
 }
 
 void afficher_BiblioH(BiblioH * b){
+    // Affiche la bibliothéque
     if (b != NULL){
         for (int i =0; i<b->m; i++){
             LivreH * tmp= b->T[i];
@@ -102,6 +109,7 @@ void afficher_BiblioH(BiblioH * b){
 }
 
 LivreH * recherche_par_numero_H(BiblioH * b, int num){
+    // revoie le premier livre dans b avec num
     for (int i =0; i<(b->m); i++){
         LivreH * tmp = b->T[i];
         while(tmp){
@@ -115,6 +123,7 @@ LivreH * recherche_par_numero_H(BiblioH * b, int num){
 }
 
 LivreH * recherche_par_titre_H(BiblioH * b, char * titre){
+    // revoie le premier livre dans b avec titre
     for (int i =0; i<(b->m); i++){
         LivreH * tmp = b->T[i];
         while(tmp){
@@ -128,6 +137,7 @@ LivreH * recherche_par_titre_H(BiblioH * b, char * titre){
 }
 
 BiblioH * recherche_livres_auteur_H(BiblioH * b, char * auteur){
+    // revoie une bibliotheque comprenant tous les livres dans b de l'auteur
     BiblioH * bnew=creer_biblioH(b->m);
     LivreH * tmp = b->T[fonctionHachage(fonctionClef(auteur), b->m)];
     while(tmp){
@@ -227,6 +237,7 @@ LivreH * recherche_ouvrage_plusieurs_exemplaires(BiblioH * b){
     if(res==NULL){
         printf("Il n'y a pas de doublons dans la bibliothèque.\n");
     }else{
+        // suppprime les doublons de res
         LivreH * ld= res;
         while(ld){
             LivreH * ld2= ld->suivant;
