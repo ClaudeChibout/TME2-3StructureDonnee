@@ -201,6 +201,8 @@ int main(int argc, char *argv[]){
 
     liberer_biblioH(ma_biblio);
 
+    // pour lancer la fonction comparaison 
+    // et produire le txt avec les données permetant de tracer le graphe
     /*
     for (int i = 1000; i<= 50000;i+= 1000){
         comparaison(nom_fichier, i);
