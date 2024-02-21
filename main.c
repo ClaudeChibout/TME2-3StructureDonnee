@@ -213,7 +213,7 @@ int main(int argc, char** argv){
             }
             if (select_biblio==1){
                 b=creer_biblioH(TAILLEM);
-            }else if(select_biblio==2){
+            }else{
                 b2=creer_biblioH(TAILLEM);
             }
             printf("la bibliothèque est crée\n");
@@ -260,9 +260,13 @@ int main(int argc, char** argv){
         case 8:
             choix_biblio(&select_biblio, buffer);
             LivreH * livre=recherche_ouvrage_plusieurs_exemplaires(select_biblio==1?b:b2);
+            LivreH * ltmp = NULL;
             while (livre){
                 afficher_LivreH(livre);
+                ltmp = livre;
                 livre = livre->suivant;
+                liberer_livreH(ltmp);
+
             }
             break;
         case 9:
@@ -270,7 +274,9 @@ int main(int argc, char** argv){
             printf("Veuillez écrire le nom de l'auteur : ");
             fgets(buffer, 256, stdin);
             if (sscanf(buffer, "%s\n", auteur) == 1) {
-                afficher_BiblioH(recherche_livres_auteur_H(select_biblio==1?b:b2,auteur));
+                BiblioH * rtmp = recherche_livres_auteur_H(select_biblio==1?b:b2,auteur);
+                afficher_BiblioH(rtmp);
+                liberer_biblioH(rtmp);
             }
             break;
         default:
