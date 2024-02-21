@@ -188,6 +188,8 @@ int main(int argc, char** argv){
         fgets(buffer, 256, stdin);
         sscanf(buffer, "%d\n", &rep);
         switch (rep){
+        case 0:
+            break;
         case 1:
             choix_biblio(&select_biblio, buffer);
             printf ( "Affichage : \n");
