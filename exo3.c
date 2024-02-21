@@ -156,7 +156,7 @@ int main(int argc, char *argv[]){
 //---------------------------------------------------------------------------------------
     printf("\n\n-------------------------\n\n");
 
-    ma_biblio =  charger_n_entrees_BiblioH(nom_fichier,nombre_ligne, 5000);
+    ma_biblio =  charger_n_entrees_BiblioH(nom_fichier,nombre_ligne, 2000);
     printf("Avec la table de hachage dont le tableau a %d cases\n",ma_biblio->m);
     debut = clock();
     recherche_par_numero_H(ma_biblio, 5844); // Remplacez par le numéro de livre réel
